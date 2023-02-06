@@ -1,0 +1,313 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:700,400|Open+Sans:400,700,600);
+
+//colors
+:root {
+    --color-yellow: #ffcc66;
+    --color-purple: #8393ca;
+    --color-lighter-gray: #e1e1e1;
+    --color-light-gray: #f2f2f2;
+    --color-off-black: #444751;
+    --color-gray-opaque: #c5c5c5;
+    --color-gray: #707584;
+    --color-white: #ffffff;
+    --color-green: #66cc33;
+    --color-red: #cc3333;
+    --color-primary-font: #999999;
+
+    //fonts
+    --secondary-font: 'Roboto', sans-serif;
+
+
+    //logos
+    --logo-master-card: '_logo-master-card.png';
+    --logo-amex: '_logo-amex.png';
+}
+
+body{
+    background-color: var(--color-yellow);
+}
+
+
+
+@mixin images($file, $width, $height) {
+
+    background-image: url($file);
+    background-repeat: no-repeat;
+    width: $width;
+    height: $height;
+    background-size: contain;
+
+}
+
+
+//body
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+
+    margin: 0;
+
+}
+
+
+.wallet-widget{
+    margin-top: 30px;
+    @media (max-width:500px) {
+        flex-direction: column;
+    }
+}
+
+.wallet-widget,
+.orders-widget {
+
+    display: flex;
+    border-radius: 4px;
+    border: 1px solid #eee;
+    background-color: var(--color-white);
+
+    .title {
+
+        font: {
+            size: 24px;
+            weight: 400;
+        }
+
+        float: left;
+        margin: 0;
+
+    }
+
+    .header {
+        margin: 0 0 15px;
+        overflow: hidden;
+        position: relative;
+    }
+
+
+    .wallet {
+        background: var(--color-light-gray);
+        box-sizing: border-box;
+        padding: 10px;
+
+        .wallet-header {
+            padding: 10px 20px 0;
+        }
+
+        .wallet-cards {
+            margin: 0 auto;
+            overflow-y: scroll;
+        }
+
+        .wallet-card {
+            background: var(--color-white);
+            border-radius: 6px;
+            box-shadow: inset 0 0 0 2px var(--color-lighter-gray);
+            clear: both;
+            cursor: pointer;
+            margin-bottom: 40px;
+            overflow: hidden;
+            width: 250px;
+            @media (max-width:500px) {
+                width: 100%;
+            }
+            @media (max-width:500px) {
+                width: 100%;
+            }
+
+            &--content {
+                padding: 20px 0 20px 20px;
+            }
+
+            &--number {
+                display: block;
+
+                font: {
+                    family: var(--secondary-font);
+                    size: 20px;
+                }
+
+                margin: 10px 0;
+                position: relative;
+
+                &--asterisks {
+                    position: relative;
+                    top: 3px;
+                }
+
+            }
+
+            &--is-active {
+                box-shadow: inset 0 0 0 4px var(--color-purple);
+            }
+
+            &--logo--bitcoin {
+                @include images('https://cryptologos.cc/logos/wrapped-bitcoin-wbtc-logo.png', 64px, 44px);
+            }
+
+        }
+
+    }
+
+    .balance {
+        box-sizing: border-box;
+        padding: 20px 20px 0 20px;
+        width: 400px;
+        @media (max-width:500px) {
+            width: 100%;
+        }
+
+        .transaction-wrap {
+
+            .empty-wallet{
+                img{
+                    width: 100%;
+                    height: auto;
+                }
+            }
+
+            .transaction {
+                overflow: hidden;
+                margin-bottom: 15px;
+                position: relative;
+                display: flex;
+                align-items: center;
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+
+                &__details {
+                    float: left;
+                    overflow: hidden;
+                    position: relative;
+                    width: 70%;
+                }
+
+                &__name {
+                    color: var(--color-off-black);
+
+                    font: {
+                        size: 18px;
+                        weight: 600;
+                    }
+
+                    margin-bottom: 10px;
+                }
+
+                &__info {
+                    font: {
+                        size: 14px;
+                        weight: 400;
+                    }
+                    .pending{
+                        color: var(--color-yellow);
+                    }
+                    .complete{
+                        color: var(--color-red);
+                    }
+                }
+
+                &__amount {
+                    display: flex;
+                    align-items: center;
+
+                    font: {
+                        size: 18px;
+                        font-weight: 600;
+                    }
+                    .small-text{
+                        color: var(--color-gray);
+                        font-weight: 200;
+                        margin-left: 3px;
+                        
+                    }
+                }
+
+                &--actions {
+                    margin-left: 40px;
+
+                    &--btn {
+                        color: var(--color-red);
+                        border-radius: 4px;
+                        border: 1px solid #eee;
+                        padding: 3px 10px;
+                        &.pending{
+                            color: var(--color-purple);
+                        }
+                        &.complete{
+                            color: var(--color-green);
+                        }
+
+                        &:hover {
+                            border-color: var(--color-gray-opaque);
+                        }
+                        &:disabled{
+                            color: var(--color-off-black);
+                            background-color: var(--color-gray-opaque);
+                            border-color: var(--color-gray-opaque);
+                        }
+
+                    }
+                }
+
+            }
+
+        }
+    }
+}
+
+.orders-widget {
+    margin-top: 30px;
+}
+
+
+.icon {
+
+    display: block;
+    float: left;
+    position: relative;
+    top: 15px;
+
+}
+
+
+.icon--minus {
+    @include images('https://s3-us-west-2.amazonaws.com/s.cdpn.io/384009/minus-icon.png', 40px, 50px);
+    background-size: auto;
+}
+
+
+.icon--plus {
+    @include images('https://s3-us-west-2.amazonaws.com/s.cdpn.io/384009/plus-icon.png', 40px, 50px);
+    background-size: auto;
+}
+
+// .icon--plus
+
+.transaction__amount--positive {
+
+    color: var(--color-green);
+
+}
+
+// .transaction__amount--positive
+
+.transaction__amount--negative {
+
+    color: var(--color-purple);
+
+}
+
+
+.divider {
+
+    background: #cccccc;
+    height: 1px;
+    margin-bottom: 15px;
+    width: 100%;
+
+}

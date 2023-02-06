@@ -1,0 +1,66 @@
+
+<ng-container *ngIf="portfolio">
+  <div class="wallet-widget">
+  
+    <article class="wallet">
+  
+      <div class="wallet-header header">
+  
+        <h2 class="title">My Wallet</h2>
+  
+      </div>
+  
+      <div class="wallet-cards">
+  
+        <div class="wallet-card wallet-card--visa wallet-card--is-active" data-balance-dollars="729"
+          data-balance-cents="00" data-card="2562">
+  
+          <div class="wallet-card--content">
+  
+            <div class="wallet-card__logo wallet-card--logo--bitcoin"></div>
+            <span class="wallet-card--number"><span class="wallet-card--number--asterisks">**** **** ****</span>
+              1</span>
+            <span class="wallet-card--exp">Portfolio</span>
+  
+          </div>
+  
+        </div>
+  
+      </div>
+  
+    </article>
+  
+    <article class="balance">
+      <div class="wallet-widget__header">
+        <h2 class="wallet-widget__title">Allocation Balance</h2>
+      </div>
+  
+      <div class="divider"></div>
+  
+      <div class="transaction-wrap">
+        <div *ngIf="portfolio.allocations.length == 0" class="empty-wallet">
+          <img src="/assets/img/wallet-void.avif" alt="" srcset="">
+        </div>
+  
+        <div class="transaction" *ngFor="let item of portfolio.allocations">
+          <div class="transaction__details">
+            <h3 class="transaction__name">ID: {{item.id}}</h3>
+          </div>
+          <div class="transaction__amount transaction__amount--positive">
+            <span class="wallet-widget__amount"> {{item.shares}}<small class="small-text">shares</small></span>
+          </div>
+          <div class="transaction--actions">
+            <button (click)="onSell(item)" type="button" class="transaction--actions--btn">sell</button>
+          </div>
+  
+        </div>
+  
+  
+  
+      </div>
+  
+    </article>
+  
+  
+  </div>
+</ng-container>

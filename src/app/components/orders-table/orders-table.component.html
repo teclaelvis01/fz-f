@@ -1,0 +1,53 @@
+<div class="orders-widget">
+
+  <article class="balance">
+    <div class="wallet-widget__header">
+      <h2 class="wallet-widget__title">Order Balance</h2>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="transaction-wrap">
+
+
+
+      <div class="transaction" *ngFor="let item of orders">
+
+
+        <div class="transaction__details">
+
+          <span class="icon icon--plus"></span>
+          <h3 class="transaction__name">Sell</h3>
+          <h4 class="transaction__info">
+            <span class="pending" *ngIf="!item.complete">Pending</span>
+            <span class="complete" *ngIf="item.complete">Completed</span>
+          </h4>
+
+        </div>
+
+        <div class="transaction__amount transaction__amount--negative">
+
+          <span class="wallet-widget__amount">{{item.shares}}(shares)</span>
+
+          <div class="transaction--actions">
+            <button [disabled]="item.complete" (click)="onComplete(item)" type="button" class="transaction--actions--btn pending">
+              <span *ngIf="!item.complete" >Complete</span>
+              <span *ngIf="item.complete" >Finished</span>
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+      <!-- /.transaction -->
+
+
+
+    </div>
+    <!-- /.transaction-wrap -->
+
+  </article>
+  <!-- /.balance -->
+
+
+</div>
